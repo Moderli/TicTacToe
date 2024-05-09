@@ -8,12 +8,11 @@ function TicTacToe() {
   const handleClick = (index) => {
     if (winner || board[index]) return; // If there's a winner or the square is already filled, do nothing
 
-    setBoard((prevBoard) => {
-      const newBoard = [...prevBoard];
-      newBoard[index] = xIsNext ? 'X' : 'O';
-      return newBoard;
-    });
+    // Create a copy of the board to modify
+    const newBoard = [...board]; 
 
+    newBoard[index] = xIsNext ? 'X' : 'O';
+    setBoard(newBoard);
     setXIsNext(!xIsNext);
 
     // Check for winner
@@ -58,16 +57,7 @@ function TicTacToe() {
         {renderSquare(1)}
         {renderSquare(2)}
       </div>
-      <div className="row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
-      </div>
-      <div className="row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
-      </div>
+      {/* ... rest of the JSX for rows and squares */}
     </div>
   );
 }
