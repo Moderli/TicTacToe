@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 function TicTacToe() {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
