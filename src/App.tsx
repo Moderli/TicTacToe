@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+
 function TicTacToe() {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
@@ -7,9 +8,12 @@ function TicTacToe() {
   const handleClick = (index) => {
     if (winner || board[index]) return; // If there's a winner or the square is already filled, do nothing
 
-    const newBoard = [...board];
-    newBoard[index] = xIsNext ? 'X' : 'O';
-    setBoard(newBoard);
+    setBoard((prevBoard) => {
+      const newBoard = [...prevBoard];
+      newBoard[index] = xIsNext ? 'X' : 'O';
+      return newBoard;
+    });
+
     setXIsNext(!xIsNext);
 
     // Check for winner
@@ -32,13 +36,11 @@ function TicTacToe() {
     }
   };
 
-  const renderSquare = (index) => {
-    return (
-      <button className="square" onClick={() => handleClick(index)}>
-        {board[index]}
-      </button>
-    );
-  };
+  const renderSquare = (index) => (
+    <button className="square" onClick={() => handleClick(index)}>
+      {board[index]}
+    </button>
+  );
 
   const getStatus = () => {
     if (winner) {
