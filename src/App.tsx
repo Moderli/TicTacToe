@@ -5,12 +5,10 @@ function TicTacToe() {
   const [xIsNext, setXIsNext] = useState(true);
   const [winner, setWinner] = useState(null);
 
-  const handleClick = (index) => {
+  const handleClick = (index: number) => { // Specify type for index
     if (winner || board[index]) return; // If there's a winner or the square is already filled, do nothing
 
-    // Create a copy of the board to modify
-    const newBoard = [...board]; 
-
+    const newBoard = [...board];
     newBoard[index] = xIsNext ? 'X' : 'O';
     setBoard(newBoard);
     setXIsNext(!xIsNext);
@@ -35,7 +33,7 @@ function TicTacToe() {
     }
   };
 
-  const renderSquare = (index) => (
+  const renderSquare = (index: number) => ( // Specify type for index
     <button className="square" onClick={() => handleClick(index)}>
       {board[index]}
     </button>
@@ -57,7 +55,16 @@ function TicTacToe() {
         {renderSquare(1)}
         {renderSquare(2)}
       </div>
-      {/* ... rest of the JSX for rows and squares */}
+      <div className="row">
+        {renderSquare(3)}
+        {renderSquare(4)}
+        {renderSquare(5)}
+      </div>
+      <div className="row">
+        {renderSquare(6)}
+        {renderSquare(7)}
+        {renderSquare(8)}
+      </div>
     </div>
   );
 }
